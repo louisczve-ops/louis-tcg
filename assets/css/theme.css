@@ -1,8 +1,8 @@
 /* Louis TCG — direction « Slab » : structure de slab de gradation,
    typographie Galerie (Fraunces + Inter), couleurs d'origine du site. */
 :root{
-  --fond:#cfe9d6; --fond-2:#b9dfc4; --noir:#3a3d40; --noir-2:#2e3134; --blanc:#ffffff;
-  --panneau:#ffffff; --panneau-2:#f1f6f2; --encre:#2f3236; --gris:#55625a; --filet:#d6e3da;
+  --fond:#cfe9d6; --fond-2:#b9dfc4; --noir:#1d2838; --noir-2:#162030; --blanc:#ffffff;
+  --panneau:#ffffff; --panneau-2:#f1f6f2; --encre:#243044; --gris:#55625a; --filet:#d6e3da;
   --vert:#3fae6a; --vert-fonce:#1f7a45; --menthe:#cfe9d6; --survol:#f3f9f5;
   --f-titre:"Fraunces",Georgia,"Times New Roman",serif;
   --f-corps:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -149,7 +149,7 @@ h1,h2,h3{font-family:var(--f-titre);font-weight:500;letter-spacing:-.01em}
 .boutique-p .ph{background:var(--panneau-2);color:var(--noir);border-bottom:1px solid var(--filet)}
 .boutique-p .filtres-b button{border-color:var(--filet);color:var(--noir);background:var(--blanc)}
 .boutique-p .filtres-b button[aria-pressed="true"]{background:var(--vert-fonce);border-color:var(--vert-fonce);color:var(--blanc)}
-.boutique-p .slab .lab{background:#6b7377}
+.boutique-p .slab .lab{background:#4f6079}
 .boutique-p .slab .lab.dix{background:var(--vert)}
 .boutique-p .slab .lab.brut{background:var(--panneau-2);color:var(--gris)}
-.boutique-p .annonce .etat-a.vendu{background:#6b7377;border-color:#6b7377}
+.boutique-p .annonce .etat-a.vendu{background:#4f6079;border-color:#4f6079}

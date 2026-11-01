@@ -1,7 +1,7 @@
 /* Layout : bandeau blanc à filet noir, panneaux blancs posés sur fond vert pastel, texte noir, aucun jaune */
 :root{
-  --fond:#cfe9d6; --fond-2:#b9dfc4; --noir:#3a3d40; --noir-clair:#3a3d40; --blanc:#ffffff;
-  --panneau:#ffffff; --panneau-2:#f1f6f2; --encre:#3a3d40; --gris:#4a5a4f; --filet:#d6e3da;
+  --fond:#cfe9d6; --fond-2:#b9dfc4; --noir:#1d2838; --noir-clair:#1d2838; --blanc:#ffffff;
+  --panneau:#ffffff; --panneau-2:#f1f6f2; --encre:#243044; --gris:#4a5a4f; --filet:#d6e3da;
   --vert:#3fae6a; --vert-fonce:#1f7a45; --survol:#eef7f0;
   --f-titre:"Lilita One","Arial Rounded MT Bold","Trebuchet MS",sans-serif;
   --f-corps:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
