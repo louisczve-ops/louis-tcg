@@ -20,10 +20,10 @@
     if (i) i.remove();
   }
   if (d.classList.contains("intro-joue")) {
-    setTimeout(fin, 3200);
+    setTimeout(fin, 2050);
     document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#intro")) fin(); });
     document.addEventListener("keydown", fin, { once: true });
   }
   // Après l'entrée, on retire les animations pour qu'un rafraîchissement des données ne les rejoue pas.
-  setTimeout(function(){ d.classList.remove("anim"); }, 6200);
+  setTimeout(function(){ d.classList.remove("anim"); }, 4200);
 })();
