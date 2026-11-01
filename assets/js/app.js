@@ -188,7 +188,8 @@ function renderApropos(){
   <div class="apropos">
     <section class="panneau texte">
       <h2>Collectionneur avant d'être vendeur</h2>
-      <p>Je m'appelle Louis et je collectionne les cartes Pokémon. Ce site rassemble ma collection, rangée extension par extension depuis Épée et Bouclier, et les cartes que je mets en vente sur Vinted sous le pseudo louis_czve.</p>
+      <p>Je m'appelle Louis et je collectionne les cartes Pokémon depuis tout petit : tout a commencé dans la cour de l'école, en échangeant des cartes avec les copains. La passion ne m'a jamais quitté, et ma carte préférée reste Mimiqui.</p>
+      <p>Si je vends aujourd'hui, c'est pour partager cette passion et faire tourner ma collection : les cartes que je mets en vente sur Vinted, sous le pseudo louis_czve, trouvent un nouveau collectionneur, et de nouvelles cartes rejoignent mon classeur. Ce site rassemble les deux, ma boutique et ma collection rangée extension par extension depuis Épée et Bouclier.</p>
       <p>Je vends surtout des cartes gradées (PCA, NXR), des éditions japonaises et d'autres langues, et des cartes à l'unité récentes ou plus anciennes. Chaque carte est photographiée telle qu'elle est, sans retouche.</p>
       <h3>Mes engagements</h3>
       <ul class="engagements">
@@ -210,6 +211,8 @@ function renderApropos(){
         <div><dt>Vendeur</dt><dd>louis_czve sur Vinted</dd></div>
         <div><dt>Cartes en vente</dt><dd>${enVente.length}</dd></div>
         <div><dt>Cartes vendues</dt><dd>${vendues}</dd></div>
+        <div><dt>Collectionneur</dt><dd>Depuis l'école</dd></div>
+        <div><dt>Carte préférée</dt><dd>Mimiqui</dd></div>
         <div><dt>Spécialité</dt><dd>Gradées, japonaises</dd></div>
         <div><dt>Envoi</dt><dd>UPS, Mondial Relay, Chronopost</dd></div>
         <div><dt>Collection suivie</dt><dd>${Object.keys(SETS).length} extensions</dd></div>
@@ -383,7 +386,7 @@ fetch("data/annonces.json",{cache:"no-cache"}).then(r=>r.ok?r.json():[]).then(d=
   if(Array.isArray(d) && !annoncesDb){
     annonces = triAjout(d);
     const h = location.hash.slice(1);
-    if((h==="boutique"||h==="") && !(document.activeElement && document.activeElement.closest && document.activeElement.closest("form"))) renderPage();
+    if((h==="boutique"||h===""||h==="apropos") && !(document.activeElement && document.activeElement.closest && document.activeElement.closest("form"))) renderPage();
   }
 }).catch(()=>{});
 const lienSur = u => /^https:\/\/(www\.)?vinted\.fr\//.test(u||"") ? u : "";
