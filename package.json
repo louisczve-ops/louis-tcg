@@ -1,0 +1,13 @@
+{
+  "name": "louis-tcg",
+  "private": true,
+  "description": "Site Louis TCG : boutique Vinted, collection et avis de cartes Pokémon (GitHub Pages, sans étape de build).",
+  "scripts": {
+    "dev": "serve -l 5173 .",
+    "check": "html-validate index.html"
+  },
+  "devDependencies": {
+    "html-validate": "^11.17.0",
+    "serve": "^14.2.6"
+  }
+}
