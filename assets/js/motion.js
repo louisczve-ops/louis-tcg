@@ -108,7 +108,7 @@
     // Un seul départ par rubrique : si la page est redessinée pendant le défilement,
     // les nouveaux chiffres reprennent la même chronologie au lieu de recommencer.
     if (!dejaVus["chiffres"]){
-      var attente = d.classList.contains("intro-tempo") ? 3700 : (introEnCours() ? 900 : 350);
+      var attente = d.classList.contains("intro-tempo") ? 4200 : (introEnCours() ? 900 : 350);
       dejaVus["chiffres"] = performance.now() + attente;
     }
     var debut = dejaVus["chiffres"], duree = 1100;

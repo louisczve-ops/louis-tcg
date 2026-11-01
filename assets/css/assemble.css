@@ -1,0 +1,34 @@
+/* Assemblage de l'accueil à l'ouverture : le plan de la page apparaît
+   (grille et emplacements en pointillés), puis chaque bloc arrive et
+   s'emboîte dans son emplacement. Piloté par assemble.js. */
+
+/* Grille de plan, derrière le contenu */
+.asm-grille{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  background-image:linear-gradient(rgba(29,40,56,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(29,40,56,.07) 1px,transparent 1px);
+  background-size:24px 24px;transition:opacity .8s ease}
+.asm-grille.on{opacity:1}
+
+/* Emplacements en pointillés, derrière les blocs : un bloc qui arrive les recouvre */
+.asm-plan{position:absolute;left:0;top:0;width:100%;z-index:-1;pointer-events:none;transition:opacity .6s ease}
+.asm-plan.off{opacity:0}
+.asm-trou{position:absolute;border:1.5px dashed rgba(29,40,56,.32);border-radius:10px;background:rgba(255,255,255,.22);
+  opacity:0;transform:scale(.97);animation:asm-trace .5s cubic-bezier(.2,.8,.2,1) var(--t,0s) forwards}
+.asm-trou span{position:absolute;left:10px;top:8px;font:600 10.5px/1 var(--f-corps);letter-spacing:.12em;text-transform:uppercase;color:rgba(29,40,56,.5)}
+.asm-trou.bandeau-t{border-radius:0;border-width:0 0 1.5px}
+@keyframes asm-trace{to{opacity:1;transform:none}}
+
+/* Arrivée d'un bloc : vient de sa direction, dépasse légèrement, se cale */
+@keyframes asm-in{
+  from{opacity:0;transform:var(--asm-from)}
+  55%{opacity:1}
+  to{opacity:1;transform:none}
+}
+/* « Clic » : liseré vert qui s'élargit et s'efface au moment où le bloc se cale */
+@keyframes asm-clic{
+  from{outline:2px solid rgba(63,174,106,.95);outline-offset:0}
+  to{outline:2px solid rgba(63,174,106,0);outline-offset:8px}
+}
+
+/* Copies propres au montage (un nom différent force le navigateur à suivre le nouveau minutage) */
+@keyframes asm-monte{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes asm-distribue{from{opacity:0;transform:translate(-50%,60%) rotate(0deg) scale(.85)}}
