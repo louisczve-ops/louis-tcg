@@ -146,14 +146,8 @@ function renderAccueil(){
     <div class="atout">${ICONES.pile}<div><b>Remise sur les lots</b><span>-10 % pour 2, -15 % pour 3</span></div></div>
   </section>
 
-  <div class="section-t"><div><h2>Qui vend ces cartes</h2><p>Un collectionneur, pas un revendeur anonyme.</p></div></div>
-  <div class="confiance">
-    <a class="bloc" href="#apropos">
-      <span class="etiq">À propos</span>
-      <h3>Louis, collectionneur</h3>
-      <p>Pourquoi je vends, comment je choisis et protège chaque carte, et comment se passe une commande.</p>
-      <span class="aller">Me connaître →</span>
-    </a>
+  <div class="section-t"><div><h2>Avis et collection</h2><p>Ce qu'en disent mes acheteurs, et les cartes que je garde.</p></div></div>
+  <div class="confiance deux">
     <a class="bloc" href="#avis">
       <span class="etiq">Avis</span>
       ${avis.length
@@ -178,47 +172,6 @@ function renderAccueil(){
     <div><h2>Ne rate aucune nouvelle carte</h2><p>Abonne-toi à mon profil Vinted : Vinted te prévient à chaque nouvelle annonce.</p></div>
     <a class="bouton vinted" href="https://www.vinted.fr/member/82876743" target="_blank" rel="noopener">Suivre louis_czve</a>
   </section>
-  </div>`;
-}
-
-function renderApropos(){
-  const enVente = annonces.filter(a=>a.etat!=="Vendu");
-  const vendues = annonces.length - enVente.length;
-  vue.innerHTML = `<p class="fil"><a href="#">Accueil</a> › À propos</p>
-  <div class="apropos">
-    <section class="panneau texte">
-      <h2>Collectionneur avant d'être vendeur</h2>
-      <p>Je m'appelle Louis et je collectionne les cartes Pokémon depuis tout petit : tout a commencé dans la cour de l'école, en échangeant des cartes avec les copains. La passion ne m'a jamais quitté, et ma carte préférée reste Mimiqui.</p>
-      <p>Si je vends aujourd'hui, c'est pour partager cette passion et faire tourner ma collection : les cartes que je mets en vente sur Vinted, sous le pseudo louis_czve, trouvent un nouveau collectionneur, et de nouvelles cartes rejoignent mon classeur. Ce site rassemble les deux, ma boutique et ma collection rangée extension par extension depuis Épée et Bouclier.</p>
-      <p>Je vends surtout des cartes gradées (PCA, NXR), des éditions japonaises et d'autres langues, et des cartes à l'unité récentes ou plus anciennes. Chaque carte est photographiée telle qu'elle est, sans retouche.</p>
-      <h3>Mes engagements</h3>
-      <ul class="engagements">
-        <li><span>Des photos réelles de la carte vendue, et l'état décrit honnêtement.</span></li>
-        <li><span>Un envoi soigné : protection, carton rigide, et suivi avec UPS, Mondial Relay ou Chronopost.</span></li>
-        <li><span>Une réponse rapide à tes questions et à tes offres sur Vinted.</span></li>
-        <li><span>Des remises sur les lots : -10 % pour 2 cartes, -15 % pour 3.</span></li>
-      </ul>
-      <h3>Comment acheter</h3>
-      <p>Toutes les ventes passent par Vinted, qui gère le paiement et protège l'acheteur. Repère une carte ici, ouvre-la sur Vinted, puis achète-la ou fais-moi une offre.</p>
-      <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
-        <a class="bouton plein" href="https://www.vinted.fr/member/82876743" target="_blank" rel="noopener">Voir mon profil Vinted</a>
-        <a class="bouton contour" href="#boutique">Parcourir les cartes</a>
-      </div>
-    </section>
-    <aside class="panneau fiche">
-      <div class="ph"><h3>En bref</h3></div>
-      <dl>
-        <div><dt>Vendeur</dt><dd>louis_czve sur Vinted</dd></div>
-        <div><dt>Cartes en vente</dt><dd>${enVente.length}</dd></div>
-        <div><dt>Cartes vendues</dt><dd>${vendues}</dd></div>
-        <div><dt>Collectionneur</dt><dd>Depuis l'école</dd></div>
-        <div><dt>Carte préférée</dt><dd>Mimiqui</dd></div>
-        <div><dt>Spécialité</dt><dd>Gradées, japonaises</dd></div>
-        <div><dt>Envoi</dt><dd>UPS, Mondial Relay, Chronopost</dd></div>
-        <div><dt>Collection suivie</dt><dd>${Object.keys(SETS).length} extensions</dd></div>
-      </dl>
-      <div class="pied-f"><a class="bouton contour" style="width:100%;justify-content:center" href="#avis">Lire les avis</a></div>
-    </aside>
   </div>`;
 }
 
@@ -386,7 +339,7 @@ fetch("data/annonces.json",{cache:"no-cache"}).then(r=>r.ok?r.json():[]).then(d=
   if(Array.isArray(d) && !annoncesDb){
     annonces = triAjout(d);
     const h = location.hash.slice(1);
-    if((h==="boutique"||h===""||h==="apropos") && !(document.activeElement && document.activeElement.closest && document.activeElement.closest("form"))) renderPage();
+    if((h==="boutique"||h==="") && !(document.activeElement && document.activeElement.closest && document.activeElement.closest("form"))) renderPage();
   }
 }).catch(()=>{});
 const lienSur = u => /^https:\/\/(www\.)?vinted\.fr\//.test(u||"") ? u : "";
@@ -401,7 +354,7 @@ function renderBoutique(){
   const liste = filtreB==="vente" ? enVente : filtreB==="gradees" ? gradeesB : filtreB==="vendu" ? annonces.filter(a=>a.etat==="Vendu") : annonces;
   let h = `<p class="fil"><a href="#">Accueil</a> › Boutique</p>
   <div class="tete-liste"><h2>Ma boutique Vinted</h2><p>Mes cartes en vente sur Vinted (louis_czve). Lots : -10 % pour 2 cartes, -15 % pour 3. Envoi UPS, Mondial Relay ou Chronopost.</p><p style="margin-top:10px"><a class="bouton plein" href="https://www.vinted.fr/member/82876743" target="_blank" rel="noopener">Voir mon profil Vinted</a></p></div>
-  <section class="panneau"><div class="ph"><h3>Annonces</h3><div class="filtres-b">${[["vente","En vente ("+enVente.length+")"],["gradees","Gradées ("+gradeesB.length+")"],["vendu","Vendues ("+(annonces.length-enVente.length)+")"],["tout","Tout"]].map(([k,l])=>`<button type="button" data-fb="${k}" aria-pressed="${filtreB===k}">${l}</button>`).join("")}</div></div>`;
+  <section class="panneau boutique-p"><div class="ph"><h3>Annonces</h3><div class="filtres-b">${[["vente","En vente ("+enVente.length+")"],["gradees","Gradées ("+gradeesB.length+")"],["vendu","Vendues ("+(annonces.length-enVente.length)+")"],["tout","Tout"]].map(([k,l])=>`<button type="button" data-fb="${k}" aria-pressed="${filtreB===k}">${l}</button>`).join("")}</div></div>`;
   if(!annonces.length) h += `<div class="aucun">Aucune annonce pour l'instant. ${peutEcrire?"Ajoute ta première annonce avec le formulaire ci-dessous.":"Les annonces apparaîtront ici."}</div>`;
   else if(!liste.length) h += `<div class="aucun">Aucune carte dans cette catégorie.</div>`;
   else h += `<div class="annonces">`+liste.map(a=>`<div class="annonce${a.etat==="Vendu"?" est-vendu":""}">
@@ -540,11 +493,10 @@ function router(){
   else if(h==="avis") renderAvis();
   else if(h==="cgu") renderCgu();
   else if(h==="nouveautes") renderNouveautes();
-  else if(h==="apropos") renderApropos();
   else if(h.startsWith("set-")) renderSet(h.slice(4));
   else renderAccueil();
-  const actif = h==="apropos"?"nav-apropos":h==="nouveautes"?"nav-nouveautes":h==="boutique"?"nav-boutique":h==="avis"?"nav-avis":h==="collection"?"nav-collection":(h==="tcg"||h.startsWith("set-"))?"nav-tcg":"nav-accueil";
-  ["nav-accueil","nav-tcg","nav-collection","nav-boutique","nav-nouveautes","nav-avis","nav-apropos"].forEach(n=>document.getElementById(n).removeAttribute("aria-current"));
+  const actif = h==="nouveautes"?"nav-nouveautes":h==="boutique"?"nav-boutique":h==="avis"?"nav-avis":h==="collection"?"nav-collection":(h==="tcg"||h.startsWith("set-"))?"nav-tcg":"nav-accueil";
+  ["nav-accueil","nav-tcg","nav-collection","nav-boutique","nav-nouveautes","nav-avis"].forEach(n=>document.getElementById(n).removeAttribute("aria-current"));
   if(h!=="cgu") document.getElementById(actif).setAttribute("aria-current","page");
   if(!garderScroll) window.scrollTo(0,0);
 }
