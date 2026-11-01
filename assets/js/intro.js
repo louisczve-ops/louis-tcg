@@ -9,21 +9,23 @@
   var accueil = !location.hash || location.hash === "#";
   d.classList.add("anim");
   if (!vue && accueil) {
-    d.classList.add("intro-joue");
+    d.classList.add("intro-joue", "intro-tempo");
     try { sessionStorage.setItem("intro-vue", "1"); } catch (e) {}
   }
-  function fin(){
+  // passe = true quand le visiteur saute l'animation : le contenu arrive alors tout de suite.
+  function fin(passe){
     if (!d.classList.contains("intro-joue")) return;
     d.classList.remove("intro-joue");
+    if (passe === true) d.classList.remove("intro-tempo");
     d.classList.add("intro-fin");
     var i = document.getElementById("intro");
     if (i) i.remove();
   }
   if (d.classList.contains("intro-joue")) {
-    setTimeout(fin, 2050);
-    document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#intro")) fin(); });
-    document.addEventListener("keydown", fin, { once: true });
+    setTimeout(fin, 2900);
+    document.addEventListener("click", function(e){ if (e.target.closest && e.target.closest("#intro")) fin(true); });
+    document.addEventListener("keydown", function(){ fin(true); }, { once: true });
   }
   // Après l'entrée, on retire les animations pour qu'un rafraîchissement des données ne les rejoue pas.
-  setTimeout(function(){ d.classList.remove("anim"); }, 4200);
+  setTimeout(function(){ d.classList.remove("anim"); }, 5600);
 })();
